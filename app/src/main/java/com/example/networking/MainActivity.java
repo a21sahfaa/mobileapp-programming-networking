@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
     public void onPostExecute(String json) {
 // Create GSON object to perform marshall/unmarshall operations
         Gson gson = new Gson();
-        
+
         Log.d("MainActivity", json);
     }
 
