@@ -14,6 +14,7 @@ public class JsonTask extends AsyncTask<String, String, String> {
 
     public interface JsonTaskListener {
         void onPostExecute(String json);
+
     }
 
     private HttpURLConnection connection = null;

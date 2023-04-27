@@ -1,8 +1,4 @@
 package com.example.networking;
 
-
-
-public class Item {
-
+public class MyAdapter {
 }
-
