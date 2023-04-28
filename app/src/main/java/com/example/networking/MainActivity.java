@@ -8,7 +8,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.networking.RecyclerView.ViewHolder;
 import com.google.gson.Gson;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
+import com.google.gson.reflect.TypeToken;
 
 @SuppressWarnings("FieldCanBeLocal")
 public class MainActivity extends AppCompatActivity implements JsonTask.JsonTaskListener {
@@ -21,20 +23,23 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
     private MyAdapter adapter;
     private ViewHolder viewholder;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         new JsonFile(this, this).execute(JSON_FILE);
+
     }
 
     @Override
     public void onPostExecute(String json) {
 // Create GSON object to perform marshall/unmarshall operations
         Gson gson = new Gson();
-
+        Type type = new TypeToken <ArrayList<Item>>(){}.getType{};
+        ArrayList<Item> data = gson.fromJson(json, type);
+        mountains.addAll(data);
+        adapter.notifyDataSetChanged();
         Log.d("MainActivity", json);
     }
 
