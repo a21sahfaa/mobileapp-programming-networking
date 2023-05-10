@@ -1,21 +1,26 @@
 package com.example.networking;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class Item {
-    private String ID;
+    private String id;
     private String name;
     private String type;
 
-    public Item(String ID, String name, String type) {
-        this.ID = ID;
+
+    public Item(String id, String name, String type) {
+        this.id = id;
         this.name = name;
         this.type = type;
     }
 
     public String getID() {
-        return ID;
+        return id;
     }
 
     public void setID(String ID) {
-        this.ID = ID;
+        this.id = id;
     }
 
     public String getName() {
@@ -33,5 +38,6 @@ public class Item {
     public void setType(String type) {
         this.type = type;
     }
+
 }
 
