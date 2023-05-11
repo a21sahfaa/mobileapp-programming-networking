@@ -11,37 +11,50 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.networking.RecyclerView.ViewHolder;
+public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
-public class MyAdapter extends RecyclerView.Adapter<ViewHolder> {
-
-    private List<Item> items;
+    private List<RecyclerViewItem> items;
     private LayoutInflater layoutInflater;
+    private OnClickListener onClickListener;
 
-    MyAdapter(Context context, List<Item> items) {
+    MyAdapter(Context context, List<RecyclerViewItem> items, OnClickListener onClickListener) {
         this.layoutInflater = LayoutInflater.from(context);
         this.items = items;
+        this.onClickListener = onClickListener;
     }
 
     @Override
     @NonNull
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_mountain, parent, false);
-        return new ViewHolder(view);
-
+        return new ViewHolder(layoutInflater.inflate(R.layout.item_mountain, parent, false));
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.id.setText(items.get(position).getID());
-        holder.name.setText(items.get(position).getName());
-        holder.type.setText(items.get(position).getType());
-
+        holder.title.setText(items.get(position).getTitle());
     }
 
     @Override
     public int getItemCount() {
         return items.size();
+    }
+
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+        TextView title;
+
+        ViewHolder(View itemView) {
+            super(itemView);
+            itemView.setOnClickListener(this);
+            title = itemView.findViewById(R.id.title);
+        }
+
+        @Override
+        public void onClick(View view) {
+            onClickListener.onClick(items.get(getAdapterPosition()));
+        }
+    }
+
+    public interface OnClickListener {
+        void onClick(RecyclerViewItem item);
     }
 }

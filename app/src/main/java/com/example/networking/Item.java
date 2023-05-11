@@ -1,43 +1,26 @@
 package com.example.networking;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Item {
-    private String id;
+    @SerializedName("ID")
+    private String ID;
+    @SerializedName("name")
     private String name;
-    private String type;
+    @SerializedName("cost")
+    private int feet;
+    @SerializedName("size")
+    private int meter;
 
-
-    public Item(String id, String name, String type) {
-        this.id = id;
+    public Item(String name){
         this.name = name;
-        this.type = type;
     }
 
-    public String getID() {
-        return id;
-    }
-
-    public void setID(String ID) {
-        this.id = id;
-    }
-
-    public String getName() {
+    public String getTitle() {
         return name;
     }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
 }
 
