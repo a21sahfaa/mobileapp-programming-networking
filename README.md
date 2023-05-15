@@ -1,42 +1,38 @@
 
 # Rapport
+började med att lägga en Recyclerview på min Activity_Main xml fil och därefter skapade jag en till xml fil som heter item_mountain.
+nästa steg så hämtades alla variabler till mainactivity och därefter skapade jag en Item class med getters och setters som håller koll på id name, cost och size.
+skapade också en ViewHolder class där jag hämtade id för textview som låg i item_mountain xml. därefter skapade jag en adapter class som heter MyAdapter där holders för varje variabel laddes till.
 
-**Skriv din rapport här!**
+        adapter = new MyAdapter(this, mountains, new MyAdapter.OnClickListener() {
+                @Override
+                public void onClick(RecyclerViewItem item) {
+                    Toast.makeText(MainActivity.this, item.getTitle(), Toast.LENGTH_SHORT).show();
+                }
+            });
+koden deklarerar och initierar en adapter och lägger till en onClick när man clickar på texten.
 
-_Du kan ta bort all text som finns sedan tidigare_.
+        RecyclerView view = findViewById(R.id.recycler_view);
+den här koden länkar view med recyclerview
+view.setLayoutManager(new LinearLayoutManager(this));
+view.setAdapter(adapter);
+första rad koden ger en linear layout alltså uppifrån texten kommer synas uppifrån ner. 
+andra rad koden berättar vilken adapter som ska användas.
 
-## Följande grundsyn gäller dugga-svar:
+        new JsonFile(this, this).execute(JSON_FILE);
+koden läser Json filen.
+    
+    Gson gson = new Gson();
+     Type type = new TypeToken <ArrayList<Item>>(){}.getType();
+        List<Item> listOfItems = gson.fromJson(json, type);
+koden konverterar json filen så att den kan användas i recyclerview.
 
-- Ett kortfattat svar är att föredra. Svar som är längre än en sida text (skärmdumpar och programkod exkluderat) är onödigt långt.
-- Svaret skall ha minst en snutt programkod.
-- Svaret skall inkludera en kort övergripande förklarande text som redogör för vad respektive snutt programkod gör eller som svarar på annan teorifråga.
-- Svaret skall ha minst en skärmdump. Skärmdumpar skall illustrera exekvering av relevant programkod. Eventuell text i skärmdumpar måste vara läsbar.
-- I de fall detta efterfrågas, dela upp delar av ditt svar i för- och nackdelar. Dina för- respektive nackdelar skall vara i form av punktlistor med kortare stycken (3-4 meningar).
+      for (Item item : listOfItems){
+            mountains.add(new RecyclerViewItem(item.getTitle()));
+        }
+koden skapar en forloop och lägger till mountains till recyclerview.
 
-Programkod ska se ut som exemplet nedan. Koden måste vara korrekt indenterad då den blir lättare att läsa vilket gör det lättare att hitta syntaktiska fel.
 
-```
-function errorCallback(error) {
-    switch(error.code) {
-        case error.PERMISSION_DENIED:
-            // Geolocation API stöds inte, gör något
-            break;
-        case error.POSITION_UNAVAILABLE:
-            // Misslyckat positionsanrop, gör något
-            break;
-        case error.UNKNOWN_ERROR:
-            // Okänt fel, gör något
-            break;
-    }
-}
-```
-
-Bilder läggs i samma mapp som markdown-filen.
 
 ![](android.png)
 
-Läs gärna:
-
-- Boulos, M.N.K., Warren, J., Gong, J. & Yue, P. (2010) Web GIS in practice VIII: HTML5 and the canvas element for interactive online mapping. International journal of health geographics 9, 14. Shin, Y. &
-- Wunsche, B.C. (2013) A smartphone-based golf simulation exercise game for supporting arthritis patients. 2013 28th International Conference of Image and Vision Computing New Zealand (IVCNZ), IEEE, pp. 459–464.
-- Wohlin, C., Runeson, P., Höst, M., Ohlsson, M.C., Regnell, B., Wesslén, A. (2012) Experimentation in Software Engineering, Berlin, Heidelberg: Springer Berlin Heidelberg.
