@@ -34,5 +34,5 @@ koden skapar en forloop och lägger till mountains till recyclerview.
 
 
 
-![](android.png)
+![](bild1.png)
 
